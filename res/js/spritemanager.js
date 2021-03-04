@@ -19,6 +19,12 @@ Sprites.load = list => {
     }
 };
 
+Sprites.fetch = list => {
+    for (const name of list) {
+        Sprites._sprites[name] = loadImage(name);
+    }
+};
+
 // Loads one sprite in advance
 Sprites.loadOne = name => {
     Sprites.load([ name ]);

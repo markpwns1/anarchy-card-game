@@ -6,61 +6,73 @@ const RIGHT_MOUSE_BUTTON = 2;
 const HAND_OPEN_SPRITE = "hand_open.png";
 const HAND_CLOSED_SPRITE = "hand_closed.png";
 
-const hoverTexts = {
-    rngesus: "RNGESUS.\nKing card. Is immortal.",
-    amogus: "DEAD MEME.\nIts presence on the board causes all your opponent's\n cards to be unable to destroy your cards.",
-    nemo: "NEMO.\n Its presence on the board reveals your opponent's hand at all times.",
-    deathstar: "THE DEATH STAR.\nEach turn this card is active, it immediately\n destroys all your enemies' cards.",
-    fountain: "FOUNTAIN OF OLD AGE.\nIts presence on the board renders all your enemies mortal.",
-    "1": "ANCIENT KANJI.\nWhile this card is in play, your opponent may no longer read.",
-    "2": "BLUE EYES GRAY ROCK.\nIs invincible. May not die. Ever.\nOnce it is put in play, it cannot be taken out of play",
-    "3": "LAND SHARK.\nWhile this card is in play, your opponent may not play any more cards.",
-    "4": "RADIANT TURRET.\nWhile this card is in play, the effects of any of your opponent's\ncards that are coloured apply to the opposite player now.",
-    "5": "BORING TURRET.\nWhile this card is in play, the effects of any of your opponent's\n cards that are not coloured apply to the opposite player now.",
-    "6": "MATER.\nWhile this card is in play, all the enemies' cards smell like farts.\nThe opponent may not breathe.",
-    "7": "LILYPAD.\nEvery turn, allows its owner to revive any of his killed cards.",
-    "8": "AK-47.\nAllows you to shoot any of your opponent's effects, thereby\ncancelling them.",
-    "9": "PRIMARY SCHOOL.\nAs long as this card is active, its owner allowed to read and do math.",
-    "10": "EYE OF THE TIGER.\nWhile this card is active, any card you\ncan see is now yours.",
-    "11": "DIAMOND SWORD.\nWhile this card is in play, all your cards are immune to\n damage-reducing effects.",
-    "12": "AXE.\n Every turn this card is active, all your enemies' cards get destroyed.",
-    "13": "SEXY MINER.\n Any of the opponent's effects that target this card\ncauses the opponent's king to be killed in an FBI raid.",
-    "14": "CAPITALISM.\n As long as this card is active, the opponent may not take cards from his deck.",
-    "30": "OCTOPUS.\nSupremely intelligent, as long as this card is active, \n your opponent must say aloud which card he has taken from\n his deck.",
+const DECKS = [ 
+    "yRuOiic"
+];
 
-    "15": "Albert the Wise - If this card attacks with an item equipped deal +1.",
-    "16": "Leela the Strong - This card levels up after 2 turns. Interrupted by Attackers. ",
-    "17": "Bernard the Dog - When this card enters the battlefield, the opponents discards their top 2 cards. ",
-    "18": "Cowardly Carl - When this card enters and is not the Main Hero, give 10+ HP to the Main Hero.",
-    "19": "Jeffrey the Hermit - Numerical Values on Items are doubled.",
-    "15": "Brainstormed Albert - This card may attack repeatedly per item card equipped.(+5 damage)",
-    "16": "Ripped Leela - You now have +5(+20) power.",
-    "17": "Hellhound Bernard - Upon Leveling Up, Opponent discards 2(6) cards either from their deck or from their hand. ",
-    "18": "Vengeful Carl - When this card attacks, you cant [cast spells](interupt).",
-    "19": "Jeffrey the Freed - Setting cards now increase power and defenses by 5[10] per item equipped.",
-    "20": "Doville - Power increase 2 (Power and Defense Increase 10)",
-    "21": "Riverbedside - At the end of each turn heal 2 (At the end of each turn heal 20 and gain 20 defense) ",
-    "22": "Hacksaw Ridge - Item cards cost -1 gold (Item Cards are free to Level 2 Heroes)",
-    "23": "The Greenery - Opponent cannot defend against the first attacker (The Opponent cannot block the main hero's attacks)",
-    "24": "Cyphill City - The Opponent must always reveal atleast one card in their hand (The Opponent must discard atleast one card a turn)",
-    "25": "Sword - Give +5 Power",
-    "26": "Shield- Give +5 defense",
-    "27": "Crossbow- Whenever the wielder attacks, give +2 attack.  ",
-    "28": "Hammer- The Wielder may interrupt the opponent while attacking. ",
-    "29": "Potion- Give +10 Defense and Power. Shuffle this back into he deck.",
-}
+const cardInfo = { };
 
-// // Sample context menu item to move a stack to the center of the board
-// CardStacks.defaultContextMenuItems.push({
-//     text: "Move to Center",
-//     message: "The other player has moved that stack to the center",
-//     action: stack => {
-//         stack.setPos({ 
-//             x: GAME_INFO.gameWidth / 2 - stack.size.x / 2, 
-//             y: GAME_INFO.gameHeight / 2 - stack.size.y / 2 
-//         });
-//     }
-// });
+// const hoverTexts = {
+//     rngesus: "RNGESUS.\nKing card. Is immortal.",
+//     amogus: "DEAD MEME.\nIts presence on the board causes all your opponent's\n cards to be unable to destroy your cards.",
+//     nemo: "NEMO.\n Its presence on the board reveals your opponent's hand at all times.",
+//     deathstar: "THE DEATH STAR.\nEach turn this card is active, it immediately\n destroys all your enemies' cards.",
+//     fountain: "FOUNTAIN OF OLD AGE.\nIts presence on the board renders all your enemies mortal.",
+//     "1": "ANCIENT KANJI.\nWhile this card is in play, your opponent may no longer read.",
+//     "2": "BLUE EYES GRAY ROCK.\nIs invincible. May not die. Ever.\nOnce it is put in play, it cannot be taken out of play",
+//     "3": "LAND SHARK.\nWhile this card is in play, your opponent may not play any more cards.",
+//     "4": "RADIANT TURRET.\nWhile this card is in play, the effects of any of your opponent's\ncards that are coloured apply to the opposite player now.",
+//     "5": "BORING TURRET.\nWhile this card is in play, the effects of any of your opponent's\n cards that are not coloured apply to the opposite player now.",
+//     "6": "MATER.\nWhile this card is in play, all the enemies' cards smell like farts.\nThe opponent may not breathe.",
+//     "7": "LILYPAD.\nEvery turn, allows its owner to revive any of his killed cards.",
+//     "8": "AK-47.\nAllows you to shoot any of your opponent's effects, thereby\ncancelling them.",
+//     "9": "PRIMARY SCHOOL.\nAs long as this card is active, its owner allowed to read and do math.",
+//     "10": "EYE OF THE TIGER.\nWhile this card is active, any card you\ncan see is now yours.",
+//     "11": "DIAMOND SWORD.\nWhile this card is in play, all your cards are immune to\n damage-reducing effects.",
+//     "12": "AXE.\n Every turn this card is active, all your enemies' cards get destroyed.",
+//     "13": "SEXY MINER.\n Any of the opponent's effects that target this card\ncauses the opponent's king to be killed in an FBI raid.",
+//     "14": "CAPITALISM.\n As long as this card is active, the opponent may not take cards from his deck.",
+//     "30": "OCTOPUS.\nSupremely intelligent, as long as this card is active, \n your opponent must say aloud which card he has taken from\n his deck.",
+
+//     "15": "Albert the Wise - If this card attacks with an item equipped deal +1.",
+//     "16": "Leela the Strong - This card levels up after 2 turns. Interrupted by Attackers. ",
+//     "17": "Bernard the Dog - When this card enters the battlefield, the opponents discards their top 2 cards. ",
+//     "18": "Cowardly Carl - When this card enters and is not the Main Hero, give 10+ HP to the Main Hero.",
+//     "19": "Jeffrey the Hermit - Numerical Values on Items are doubled.",
+//     "15": "Brainstormed Albert - This card may attack repeatedly per item card equipped.(+5 damage)",
+//     "16": "Ripped Leela - You now have +5(+20) power.",
+//     "17": "Hellhound Bernard - Upon Leveling Up, Opponent discards 2(6) cards either from their deck or from their hand. ",
+//     "18": "Vengeful Carl - When this card attacks, you cant [cast spells](interupt).",
+//     "19": "Jeffrey the Freed - Setting cards now increase power and defenses by 5[10] per item equipped.",
+//     "20": "Doville - Power increase 2 (Power and Defense Increase 10)",
+//     "21": "Riverbedside - At the end of each turn heal 2 (At the end of each turn heal 20 and gain 20 defense) ",
+//     "22": "Hacksaw Ridge - Item cards cost -1 gold (Item Cards are free to Level 2 Heroes)",
+//     "23": "The Greenery - Opponent cannot defend against the first attacker (The Opponent cannot block the main hero's attacks)",
+//     "24": "Cyphill City - The Opponent must always reveal atleast one card in their hand (The Opponent must discard atleast one card a turn)",
+//     "25": "Sword - Give +5 Power",
+//     "26": "Shield- Give +5 defense",
+//     "27": "Crossbow- Whenever the wielder attacks, give +2 attack.  ",
+//     "28": "Hammer- The Wielder may interrupt the opponent while attacking. ",
+//     "29": "Potion- Give +10 Defense and Power. Shuffle this back into he deck.",
+// }
+
+// Sample context menu item to move a stack to the center of the board
+CardStacks.defaultContextMenuItems.push({
+    text: "Duplicate",
+    message: "The other player has duplicated that stack",
+    action: stack => {
+        const s = CardStacks.instantiate(stack.cards, { ...stack.pos }, stack.isFaceDown);
+        s.beginDrag();
+    }
+});
+
+CardStacks.defaultContextMenuItems.push({
+    text: "Delete",
+    message: "The other player has deleted that stack",
+    action: stack => {
+        CardStacks.destroy(stack.id);
+    }
+});
 
 let otherMouseDown = false;
 
@@ -287,8 +299,62 @@ Game.onInit = () => {
     EffectAreas.active.push(hostHand);
     EffectAreas.active.push(guestHand);
 
-    // Arrange the board
-    Game.reset();
+    let amountLoaded = 0;
+    for (const deck of DECKS) {
+        const headers = new Headers();
+        headers.append("Authorization", "Client-ID fefe95129b82295");
+        fetch("https://api.imgur.com/3/album/" + deck + "/images", {
+            method: "GET",
+            headers: headers,
+            mode: 'cors',
+            cache: 'default' 
+        }).then(response => {
+            response.json().then(json => {
+                for (const image of json.data) {
+                    const cardName = image.link.substring(0, image.link.lastIndexOf("."));
+                    cardInfo[cardName] = {
+                        deck: deck,
+                        desc: image.description
+                    };
+
+                    let lineLength = 0;
+                    let lineNumber = 0;
+                    const maxLineLength = 30;
+                    const card = cardInfo[cardName];
+                    for (let i = 0; i < card.desc.length; i++) {
+                        const char = card.desc[i];
+                        if(char == "\n") {
+                            lineNumber++;
+                            lineLength = 0;
+                            continue;
+                        }
+                        else if(char == " ") {
+                            if(lineLength >= maxLineLength) {
+                                lineNumber++;
+                                lineLength = 0;
+                                card.desc = card.desc.substring(0, i) + "\n" + card.desc.substring(i);
+                                continue;
+                            }
+                        }
+                        else {
+                            lineLength++;
+                            continue;
+                        }
+                    }
+                }
+
+                Sprites.fetch(json.data.map(x => x.link));
+
+                amountLoaded++;
+
+                if(amountLoaded >= DECKS.length) {
+                    // Arrange the board
+                    Game.reset();
+                }
+            });
+        });
+    }
+
 }
 
 // Called automatically every time the game board needs to be reset (including
@@ -303,11 +369,22 @@ Game.reset = () => {
     // CardStacks.instantiate(Util.CARDS_HEARTS, { x: 10 + (10 + GAME_INFO.defaultCardWidth) * 2, y: 150 }, false, true);
     // CardStacks.instantiate(Util.CARDS_SPADES, { x: 10 + (10 + GAME_INFO.defaultCardWidth) * 3, y: 150 }, false, true);
     
-    CardStacks.instantiate([ "rngesus" ], { x: 10, y: 10 }, false, true);
-    CardStacks.instantiate([ "amogus", "nemo", "deathstar", "fountain", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "13", "14", "30" ], { x: 100, y: 10 }, false, true);
+    // CardStacks.instantiate([ "rngesus" ], { x: 10, y: 10 }, false, true);
+    // CardStacks.instantiate([ "amogus", "nemo", "deathstar", "fountain", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "13", "14", "30" ], { x: 100, y: 10 }, false, true);
 
-    CardStacks.instantiate([ "17" ], { x: 200, y: 10 }, false, true);
-    CardStacks.instantiate([ "15", "16", "18", "19", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "19" ], { x: 300, y: 10 }, false, true);
+    // CardStacks.instantiate([ "17" ], { x: 200, y: 10 }, false, true);
+    // CardStacks.instantiate([ "15", "16", "18", "19", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "19" ], { x: 300, y: 10 }, false, true);
+
+    let x = 10;
+    for (const deck of DECKS) {
+        const keys = Object.getOwnPropertyNames(cardInfo);
+        let cards = keys.filter(x => cardInfo[x].deck == deck);
+        // console.log(keys);
+        // console.log(cards);
+        CardStacks.instantiate([ cards[0] ], { x: x, y: 150 }, false, true);
+        CardStacks.instantiate(cards.slice(1, cards.length), { x: x + 100, y: 150 }, true, true);
+        x += 200;
+    }
 
 }
 
@@ -346,13 +423,20 @@ Game.tick = (dt, g) => {
                 
             g.textAlign = "left";
             g.textBaseline = "top"; 
-            const lines = hoverTexts[stack.getTop()].split("\n");
+            // const lines = hoverTexts[stack.getTop()].split("\n");
+            const topCardDesc = cardInfo[stack.getTop()].desc.trim();
+            if(!topCardDesc) continue;
+
+            
+            const lines = topCardDesc.split("\n");
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
                 g.font = "12px Arial";
                 g.fillStyle = "black";
                 g.fillText(line, left + 5, top + 5 + i * 15); 
             }
+            
+            break;
         }
     }
 
