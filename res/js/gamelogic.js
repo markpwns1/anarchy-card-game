@@ -7,7 +7,8 @@ const HAND_OPEN_SPRITE = "hand_open.png";
 const HAND_CLOSED_SPRITE = "hand_closed.png";
 
 const DECKS = [ 
-    "yRuOiic"
+    "yRuOiic",
+    "IQHOnqa"
 ];
 
 const cardInfo = { };
@@ -435,7 +436,7 @@ Game.tick = (dt, g) => {
                 g.fillStyle = "black";
                 g.fillText(line, left + 5, top + 5 + i * 15); 
             }
-            
+
             break;
         }
     }
